@@ -1,0 +1,265 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: #424242;
+    user-select: none;
+}
+
+input::placeholder {
+    color: #9E9E9E !important;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="file"],
+input[type="datetime-local"],
+select.form-control {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #616161;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="file"]:focus,
+input[type="datetime-local"]:focus,
+select.form-control:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.rounded-button {
+    border-radius: 50px !important;
+    padding: 10px;
+    min-width: 150px;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+}
+
+.vertical-align {
+    display: flex;
+    flex: none;
+    align-items: center;
+}
+
+.dropdown-item {
+    color: rgba(0, 0, 0, .5);
+}
+
+.dropdown-item.active,
+.dropdown-item:hover {
+    background-color: #FFFFFF;
+    color: #212529;
+    font-weight: 400 !important;
+}
+
+.avatar,
+.profile-avatar {
+    vertical-align: middle;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: top center;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+}
+
+.profile-avatar {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.input-lock {
+    position: relative;
+}
+
+.input-lock .fa-lock {
+    position: absolute;
+    top: 12px;
+    right: 0;
+    z-index: 10;
+}
+
+.form-control:disabled {
+    background-color: transparent;
+}
+
+.title {
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.subtitle {
+    font-size: 15px;
+}
+
+
+/* The switch - the box around the slider */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+
+/* Hide default HTML checkbox */
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+
+/* The slider */
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #8C6E63;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #8C6E63;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+
+/* Rounded sliders */
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+
+/* Bootstrap Customization */
+
+.btn-primary {
+    background-color: #8C6E63 !important;
+    border-color: #8C6E63 !important;
+    color: #FFFFFF !important;
+}
+
+.btn-primary:hover {
+    background-color: #785e55 !important;
+    border-color: #785e55 !important;
+}
+
+.btn-light {
+    background-color: #FFFFFF !important;
+    border-color: #616161 !important;
+    color: #616161 !important;
+}
+
+.btn-light:hover {
+    background-color: #F5F5F5 !important;
+    border-color: #616161 !important;
+}
+
+.form-control {
+    padding: 0px !important;
+}
+
+.form-control.is-invalid:focus {
+    box-shadow: none;
+}
+
+@media all and (min-width: 1200px) {
+    .dashboard-image-mobile {
+        display: none;
+    }
+    #dashboard-chart-1 {
+        position: absolute;
+        top: 187.5px;
+    }
+}
+
+@media all and (min-width: 992px) and (max-width: 1199px) {
+    .dashboard-image {
+        display: none !important;
+    }
+    #dashboard-chart-1 {
+        position: unset;
+        top: 0;
+    }
+    .dashboard-image-mobile {
+        width: 50% !important;
+    }
+}
+
+@media all and (max-width: 991px) {
+    .btn-block-xs-only {
+        width: 100%;
+        display: block;
+    }
+    .dashboard-image {
+        display: none !important;
+    }
+    #dashboard-chart-1 {
+        position: unset;
+        top: 0;
+    }
+    .dashboard-image-mobile {
+        display: inline-block !important;
+    }
+}
