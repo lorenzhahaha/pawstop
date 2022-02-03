@@ -25,7 +25,7 @@ Pawstop is an e-commerce application made for those people looking to adopt dogs
 ## Installation
 
 After `cloning the project`, run the following commands to proceed:
-> Copy .env.example to .env and add necessary configuration
+> Copy .env.example to .env and add necessary configuration and create a DB named `pawstop`
 
 ```
 composer install
