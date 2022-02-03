@@ -29,7 +29,6 @@ After `cloning the project`, run the following commands to proceed:
 
 ```
 composer install
-php artisan key:generate
 npm install && npm run dev
 php artisan key:generate
 php artisan migrate
