@@ -25,9 +25,11 @@ Pawstop is an e-commerce application made for those people looking to adopt dogs
 ## Installation
 
 After `cloning the project`, run the following commands to proceed:
+> Copy .env.example to .env and add necessary configuration
 
 ```
 composer install
+php artisan key:generate
 npm install && npm run dev
 php artisan key:generate
 php artisan migrate
