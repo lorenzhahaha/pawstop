@@ -36,8 +36,7 @@ php artisan serve (without Virtual hosting)
 ```
 
 - Virtual hosting is optional. If you can setup a virtual hosting, its preferred to use `pawstop.me` as the domain name to use all of the services of the app stated below:
-> Laravel Socialite (Google login)
-> Google reCAPTCHA 
+> Laravel Socialite (Google login) & Google reCAPTCHA
 
 ## Screenshots
 
