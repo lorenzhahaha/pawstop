@@ -5385,9 +5385,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      page: 1,
       products: {},
       category: "",
       filter: "",
@@ -5402,27 +5406,54 @@ __webpack_require__.r(__webpack_exports__);
     editProduct: function editProduct(id) {
       return route('product.edit', id);
     },
-    fetchAllProducts: function fetchAllProducts() {
+    deleteProduct: function deleteProduct(id) {
       var _this = this;
 
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          axios["delete"](route('api.product.destroy', id)).then(function (response) {
+            if (response.data.success) {
+              swal.fire('Success!', response.data.message, 'success');
+
+              _this.getResults(_this.page);
+            } else {
+              swal.fire('Oops!', response.data.message, 'warning');
+            }
+          });
+        }
+      });
+    },
+    fetchAllProducts: function fetchAllProducts() {
+      var _this2 = this;
+
+      this.page = 1;
       axios.get(route('api.product.index')).then(function (data) {
-        return _this.products = data.data;
+        return _this2.products = data.data;
       });
     },
     getResults: function getResults() {
-      var _this2 = this;
+      var _this3 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      this.page = page;
       axios.get(route('api.product.index'), {
         params: {
-          page: page,
+          page: this.page,
           category: this.category,
           filter: this.filter,
           keyword: this.keyword,
           fields: this.fields
         }
       }).then(function (response) {
-        _this2.products = response.data;
+        _this3.products = response.data;
       });
     }
   },
@@ -79099,13 +79130,27 @@ var render = function () {
                           _c(
                             "a",
                             {
-                              staticClass: "btn btn-warning",
+                              staticClass: "btn btn-warning mb-1",
                               attrs: {
                                 href: _vm.editProduct(product.id),
                                 title: "Edit",
                               },
                             },
                             [_c("i", { staticClass: "fas fa-pencil-alt" })]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-danger mb-1",
+                              attrs: { href: "#", title: "Delete" },
+                              on: {
+                                click: function ($event) {
+                                  return _vm.deleteProduct(product.id)
+                                },
+                              },
+                            },
+                            [_c("i", { staticClass: "fas fa-trash-alt" })]
                           ),
                         ]),
                       ])

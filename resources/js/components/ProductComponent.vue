@@ -67,8 +67,11 @@
                                         <td>{{ product.available_at }}</td>
                                         <td>{{ product.created_by }}</td>
                                         <td>
-                                            <a :href="editProduct(product.id)" class="btn btn-warning" title="Edit">
+                                            <a :href="editProduct(product.id)" class="btn btn-warning mb-1" title="Edit">
                                                 <i class="fas fa-pencil-alt"></i>
+                                            </a>
+                                            <a href="#" @click="deleteProduct(product.id)" class="btn btn-danger mb-1" title="Delete">
+                                                <i class="fas fa-trash-alt"></i>
                                             </a>
                                         </td>
                                     </tr>
@@ -90,6 +93,7 @@
 export default {
     data() {
         return {
+            page: 1,
             products: {},
             category: "",
             filter: "",
@@ -104,14 +108,50 @@ export default {
         editProduct(id) {
             return route('product.edit', id);
         },
+        deleteProduct(id) {
+            swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    axios.delete(route('api.product.destroy', id))
+                        .then((response) => {
+                            if (response.data.success) {
+                                swal.fire(
+                                    'Success!',
+                                    response.data.message,
+                                    'success'
+                                )
+
+                                this.getResults(this.page)
+                            } else {
+                                swal.fire(
+                                    'Oops!',
+                                    response.data.message,
+                                    'warning'
+                                )
+                            }
+                        });
+                }
+            })
+        },
         fetchAllProducts() {
+            this.page = 1
+
             axios.get(route('api.product.index'))
                 .then((data) => (this.products = data.data));
         },
         getResults(page = 1) {
+            this.page = page
+
             axios.get(route('api.product.index'), {
                 params: {
-                    page: page,
+                    page: this.page,
                     category: this.category,
                     filter: this.filter,
                     keyword: this.keyword,
